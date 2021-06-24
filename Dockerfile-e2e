@@ -1,0 +1,9 @@
+FROM cypress/included:7.5.0
+
+RUN apt-get update && \
+    apt-get install -y openjdk-11-jre-headless && \
+    apt-get clean;
+
+WORKDIR /cypress
+
+ENTRYPOINT ["cypress", "run" ]

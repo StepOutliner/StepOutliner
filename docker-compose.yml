@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/home/logseq
+    ports:
+      - "3001:3001"
+      - "9360:9360"
+      - "8701:8701"
+
+  e2e-chrome:
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile-e2e
+    # depends_on:
+    #   - dev
+    command: "--browser chrome"
+    # environment:
+      # pass base url to test pointing at the web application
+      # - CYPRESS_baseUrl=http://127.0.0.1:3001
+    volumes:
+      - .:/cypress
+      - "${HOME}/.m2:/root/.m2"

@@ -14,6 +14,10 @@ RUN useradd -ms /bin/bash logseq
 USER logseq
 WORKDIR /home/logseq
 
+RUN yarn
+
 EXPOSE 3001
 EXPOSE 9630
 EXPOSE 8701
+
+CMD ["yarn", "watch"]
